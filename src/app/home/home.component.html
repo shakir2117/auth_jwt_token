@@ -1,0 +1,13 @@
+<button mat-raised-button color="primary" (click)="logout()" style="float: right;">Logout</button>
+<div class="card mt-4">
+    <h1 class="card-header py-3">You're logged in with Angular 15 & JWT!!</h1>
+    <div class="card-body">
+        <h1>Users from secure api end point</h1>
+        <div *ngIf="loading"><mat-spinner></mat-spinner></div>
+        <ul *ngIf="users">
+            <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
+        </ul>
+    </div>
+</div>
+
+<h1 style="text-align: center;padding: 10%;font-size: 5em;">User Locked in successfully</h1>

@@ -1,0 +1,30 @@
+  <button mat-button color="primary" type="button" routerLink="/home" style="float:right">Home</button>
+  <div class="form">
+    <p>Login Form</p>
+    <form [formGroup]="loginform" novalidate>
+        <div class="col">
+            <div class="row">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>username
+                    </mat-label>
+                    <input type="text" #username matInput formControlName="username" placeholder="xyz">
+                    <mat-error *ngIf="loginform.controls['username'].hasError('required')">
+                        Username is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+    
+            </div>
+            <div class="row">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input type="password" #password matInput placeholder="********" formControlName="password">
+                    <mat-error *ngIf="loginform.controls['password'].hasError('required')">
+                        password is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <button type="submit" mat-raised-button (click)="login(loginform.value)">Login</button>
+      </form>
+  </div>
+
