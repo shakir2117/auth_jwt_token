@@ -24,6 +24,18 @@ To clone the repository "jwt-token-with-json-server" from GitHub, follow the ins
 4. Wait for the cloning process to complete.
 
 5. Once the process is finished, you will have a local copy of the "jwt-token-with-json-server" repository in the current directory.
+6. Run the module install command 
+```
+npm install
+```
+7.Run the node module 
+```
+npm start
+```
+8.Run the json Server
+```
+json-server --watch db.json
+```
 
 Now you can navigate to the cloned repository and start working with the code.
 ## Code scaffolding
