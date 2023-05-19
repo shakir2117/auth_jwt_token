@@ -1,7 +1,8 @@
-  <button mat-button color="primary" type="button" routerLink="/home" style="float:right">Home</button>
+  <button mat-raised-button color="primary" type="button" routerLink="/home" style="float:right">Home</button>
+  <button mat-raised-button color="warn" type="button" routerLink="/register" style="float:right">Register</button>
   <div class="form">
-    <p>Login Form</p>
     <form [formGroup]="loginform" novalidate>
+        <h1>Login Form</h1>
         <div class="col">
             <div class="row">
                 <mat-form-field class="example-full-width" appearance="outline">

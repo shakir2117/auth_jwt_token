@@ -1,0 +1,48 @@
+<button mat-raised-button color="primary" type="button" routerLink="/home" style="float:right">Home</button>
+<button mat-raised-button color="warn" type="button" routerLink="/login" style="float:right">Login</button>
+<div class="form">
+    <form [formGroup]="registerform" novalidate>
+        <h1>Registration Form</h1>
+        <div class="col">
+            <div class="row">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>username
+                    </mat-label>
+                    <input type="text" #username matInput formControlName="username" placeholder="xyz">
+                    <mat-error *ngIf="registerform.controls['username'].hasError('required')">
+                        Username is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+            </div>
+            <div class="row">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input type="password" #password matInput placeholder="********" formControlName="password">
+                    <mat-error *ngIf="registerform.controls['password'].hasError('required')">
+                        password is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>firstName</mat-label>
+                    <input type="text" #firstName matInput formControlName="firstName">
+                    <mat-error *ngIf="registerform.controls['password'].hasError('required')">
+                        Firstname is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>lastName</mat-label>
+                    <input type="text" #lastName matInput formControlName="lastName">
+                    <mat-error *ngIf="registerform.controls['lastName'].hasError('required')">
+                        Lastname is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <button type="submit" mat-raised-button (click)="register(registerform.value)">Register</button>
+    </form>
+</div>

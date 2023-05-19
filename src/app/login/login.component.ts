@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import {FormControl,FormBuilder, Validators} from '@angular/forms';
+import { FormControl, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { ResourceLoader } from '@angular/compiler';
-import { map, window } from 'rxjs';
+import { BehaviorSubject, Observable, first, map, window } from 'rxjs';
+import { User } from '../home/home.component';
 
 
 @Component({
@@ -19,31 +20,34 @@ export class LoginComponent implements OnInit {
     password: [null, Validators.compose([
       Validators.required, Validators.minLength(8), Validators.maxLength(14)])
     ],
-    });
+  });
+  loading = false;
+  submitted = false;
+  error = '';
 
-
-  constructor(private http: HttpClient, private router: Router,
-    private fb: FormBuilder,private user:AuthService) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private fb: FormBuilder,
+    private user: AuthService) {
+  }
 
   ngOnInit(): void {
-    if (localStorage.getItem('token') != null) {
+    if (localStorage.getItem('user') != null) {
       console.log('Already Logged In')
       this.router.navigate(['/home'])
-    } 
+    }
   }
 
   login(loginform: any) {
-    if (this.loginform.value) {
-      console.log(this.loginform.value)
-      this.http.post('http://localhost:5000/users/authenticate',loginform).subscribe((user:any)=>{
-      localStorage.setItem('user',JSON.stringify(user));
-      this.router.navigate(['/home'])
-      return user;
+      this.user.login(this.loginform.value).pipe(first()).subscribe({
+        next: () => {
+          this.router.navigate(['/home'])
+        },
+        error: error => {
+          this.error = error;
+          this.loading = false;
+        }
       });
-    }
-    else{
-      console.log(this.loginform.value) 
-      console.log('Invalid Form')
-    }
   }
 }
