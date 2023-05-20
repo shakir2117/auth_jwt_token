@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
-import { ResourceLoader } from '@angular/compiler';
-import { BehaviorSubject, Observable, first, map, window } from 'rxjs';
-import { User } from '../home/home.component';
+import { first} from 'rxjs';
 
 
 @Component({
@@ -40,7 +38,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(loginform: any) {
-      this.user.login(this.loginform.value).pipe(first()).subscribe({
+      this.user.login(this.loginform.value).subscribe({
         next: () => {
           this.router.navigate(['/home'])
         },

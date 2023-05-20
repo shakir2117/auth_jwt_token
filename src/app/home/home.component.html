@@ -3,6 +3,8 @@
     <div>
         <h1>List of Users on this Secure Server </h1>
         <h1>User Locked in successfully</h1>
+        <h1>{{ timerText }}</h1>
+
         <div *ngIf="loading"><mat-spinner diameter="50" color="primary" ></mat-spinner></div>
         <table>
             <tr *ngIf="users">
