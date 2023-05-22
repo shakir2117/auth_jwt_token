@@ -2,14 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, map } from 'rxjs';
-import { User } from './home/home.component';
+import { User } from './home/home/home.component';
+import { LowerCasePipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private userSubject: BehaviorSubject<User | null>;
-  public user: Observable<User | null>;
+  private user: Observable<User | null>;
 
 
 
@@ -23,20 +24,21 @@ export class AuthService {
     return this.userSubject.value;
 }
 
-login(loginform: any): Observable<User> {
+login(loginform: any): Observable<User> { 
   console.log(loginform);
-  return this.http.post<User>('http://localhost:5000/users/authenticate', loginform)
+  return this.http.post<User>('http://localhost:5000/users/authenticate',loginform)
     .pipe(map(user => {
       localStorage.setItem('user', JSON.stringify(user));
       this.userSubject.next(user);
-      this.router.navigate(['/home']);
+      this.router.navigate(['/home/home']);
       return user;
     }));
 }
 register(registerform: any) {
-  this.http.post('http://localhost:3000/users/', registerform).subscribe(data => {
+  console.log(registerform);
+  this.http.post('http://localhost:3000/users/', registerform ).subscribe(data => {
     console.log('Registration successful:', data);
-    this.router.navigate(['/login']);  
+    this.router.navigate(['/admin/login']);  
   })
 }
 
@@ -44,6 +46,6 @@ register(registerform: any) {
   logout(){
     localStorage.removeItem('user');
     this.userSubject.next(null);
-    this.router.navigate(['/login']);
+    this.router.navigate(['/admin/login']);
   }
 }

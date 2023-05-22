@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component,OnInit,OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
-import { UserService } from '../user.service';
+import { AuthService } from '../../auth.service';
+import { UserService } from '../../user.service';
 import { interval, Subscription } from 'rxjs';
 
 export class User {
@@ -33,11 +33,11 @@ export class HomeComponent implements OnInit {
       this.loading = false;
       this.users = users;
   });
-  this.timerSubscription = interval(60000).subscribe(() => {
+  this.timerSubscription = interval(6000).subscribe(() => {
       this.timerText = 'Users are Displayed and one minute has been passed!!';
       setTimeout(() => {
         this.timerText = '';
-      }, 60000);
+      }, 6000);
     });
     
   }
@@ -51,6 +51,5 @@ export class HomeComponent implements OnInit {
   }
   logout(){
   this.auth.logout();
-  this.router.navigate(['/login']);
   }
 }

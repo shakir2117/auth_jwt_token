@@ -5,7 +5,7 @@
         <h1>User Locked in successfully</h1>
         <h1>{{ timerText }}</h1>
 
-        <div *ngIf="loading"><mat-spinner diameter="50" color="primary" ></mat-spinner></div>
+        <div *ngIf="loading"></div>
         <table>
             <tr *ngIf="users">
                 <th>No.</th>
@@ -17,7 +17,7 @@
                 <td>{{user.id}}</td>
                 <td>{{user.username}}</td>
                 <td>{{user.firstName}}</td>
-                <td>{{user.lastName}}</td>
+                <td>{{user.lastName}}</td> 
             </tr>
         </table>
 

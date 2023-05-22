@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from '../auth.service';
-import { first} from 'rxjs';
-
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -33,14 +31,14 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     if (localStorage.getItem('user') != null) {
       console.log('Already Logged In')
-      this.router.navigate(['/home'])
+      this.router.navigate(['/home/home'])
     }
   }
 
   login(loginform: any) {
       this.user.login(this.loginform.value).subscribe({
         next: () => {
-          this.router.navigate(['/home'])
+          this.router.navigate(['./home/home'])
         },
         error: error => {
           this.error = error;

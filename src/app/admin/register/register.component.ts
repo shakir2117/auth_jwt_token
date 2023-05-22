@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormControl, FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-register',
@@ -27,7 +27,6 @@ export class RegisterComponent {
 
 
   register(registerform: any) {
-      console.log(registerform);
       this.reguser.register(registerform);
     }
   
